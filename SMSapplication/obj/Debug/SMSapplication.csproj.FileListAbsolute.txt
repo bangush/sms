@@ -1,0 +1,17 @@
+C:\Users\cuong\Desktop\dangtinvn\SMSapplication\SMSapplication\bin\Debug\SMSapplication.exe
+C:\Users\cuong\Desktop\dangtinvn\SMSapplication\SMSapplication\bin\Debug\SMSapplication.pdb
+C:\Users\cuong\Desktop\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.csprojResolveAssemblyReference.cache
+C:\Users\cuong\Desktop\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.SMSapplication.resources
+C:\Users\cuong\Desktop\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.Properties.Resources.resources
+C:\Users\cuong\Desktop\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.csproj.GenerateResource.Cache
+C:\Users\cuong\Desktop\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.exe
+C:\Users\cuong\Desktop\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.pdb
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.SMSapplication.resources
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.Properties.Resources.resources
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.csproj.GenerateResource.Cache
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\bin\Debug\SMSapplication.exe.config
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\bin\Debug\SMSapplication.exe
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\bin\Debug\SMSapplication.pdb
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.csprojResolveAssemblyReference.cache
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.exe
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.pdb
