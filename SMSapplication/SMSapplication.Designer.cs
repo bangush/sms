@@ -766,7 +766,7 @@
             this.Controls.Add(this.tabSMSapplication);
             this.MaximizeBox = false;
             this.Name = "SMSapplication";
-            this.Text = "SMS Application";
+            this.Text = "7";
             this.Load += new System.EventHandler(this.SMSapplication_Load);
             this.tabSMSapplication.ResumeLayout(false);
             this.tbListNumber.ResumeLayout(false);
