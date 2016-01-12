@@ -15,3 +15,13 @@ D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSa
 D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.csprojResolveAssemblyReference.cache
 D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.exe
 D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.pdb
+D:\Cuong\source\sms\SMSapplication\bin\Debug\SMSapplication.exe.config
+D:\Cuong\source\sms\SMSapplication\obj\Debug\SMSapplication.exe
+D:\Cuong\source\sms\SMSapplication\obj\Debug\SMSapplication.pdb
+D:\Cuong\source\sms\SMSapplication\bin\Debug\SMSapplication.exe
+D:\Cuong\source\sms\SMSapplication\bin\Debug\SMSapplication.pdb
+D:\Cuong\source\sms\SMSapplication\obj\Debug\SMSapplication.csprojResolveAssemblyReference.cache
+D:\Cuong\source\sms\SMSapplication\obj\Debug\SMSapplication.SMSapplication.resources
+D:\Cuong\source\sms\SMSapplication\obj\Debug\SMSapplication.Properties.Resources.resources
+D:\Cuong\source\sms\SMSapplication\obj\Debug\SMSapplication.csproj.GenerateResource.Cache
+D:\Cuong\source\sms\SMSapplication\obj\Debug\SMSapplication.AddNumber.resources

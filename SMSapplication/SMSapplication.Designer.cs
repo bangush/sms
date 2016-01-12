@@ -90,6 +90,7 @@
             this.statusBar1 = new System.Windows.Forms.StatusBar();
             this.opfFileExcel = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.tabSMSapplication.SuspendLayout();
             this.tbListNumber.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhoneList)).BeginInit();
@@ -121,6 +122,7 @@
             // 
             // tbListNumber
             // 
+            this.tbListNumber.Controls.Add(this.label11);
             this.tbListNumber.Controls.Add(this.btnThem);
             this.tbListNumber.Controls.Add(this.btnXoaSo);
             this.tbListNumber.Controls.Add(this.btnSaveFile);
@@ -142,6 +144,7 @@
             this.btnThem.TabIndex = 4;
             this.btnThem.Text = "Thêm số";
             this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // btnXoaSo
             // 
@@ -743,6 +746,15 @@
             this.pictureBox1.TabIndex = 76;
             this.pictureBox1.TabStop = false;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(372, 321);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(41, 13);
+            this.label11.TabIndex = 5;
+            this.label11.Text = "label11";
+            // 
             // SMSapplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -758,6 +770,7 @@
             this.Load += new System.EventHandler(this.SMSapplication_Load);
             this.tabSMSapplication.ResumeLayout(false);
             this.tbListNumber.ResumeLayout(false);
+            this.tbListNumber.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhoneList)).EndInit();
             this.tbPortSettings.ResumeLayout(false);
             this.gboPortSettings.ResumeLayout(false);
@@ -843,6 +856,7 @@
         private System.Windows.Forms.Button btnXoaSo;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnThem;
+        private System.Windows.Forms.Label label11;
     }
 }
 
