@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SMSapplication));
             this.tabSMSapplication = new System.Windows.Forms.TabControl();
             this.tbListNumber = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
             this.btnThem = new System.Windows.Forms.Button();
             this.btnXoaSo = new System.Windows.Forms.Button();
             this.btnSaveFile = new System.Windows.Forms.Button();
@@ -121,6 +122,7 @@
             // 
             // tbListNumber
             // 
+            this.tbListNumber.Controls.Add(this.label11);
             this.tbListNumber.Controls.Add(this.btnThem);
             this.tbListNumber.Controls.Add(this.btnXoaSo);
             this.tbListNumber.Controls.Add(this.btnSaveFile);
@@ -134,6 +136,15 @@
             this.tbListNumber.Text = "List Send";
             this.tbListNumber.UseVisualStyleBackColor = true;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(372, 321);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(41, 13);
+            this.label11.TabIndex = 5;
+            this.label11.Text = "label11";
+            // 
             // btnThem
             // 
             this.btnThem.Location = new System.Drawing.Point(264, 321);
@@ -142,6 +153,7 @@
             this.btnThem.TabIndex = 4;
             this.btnThem.Text = "Thêm số";
             this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // btnXoaSo
             // 
@@ -754,10 +766,11 @@
             this.Controls.Add(this.tabSMSapplication);
             this.MaximizeBox = false;
             this.Name = "SMSapplication";
-            this.Text = "SMS Application";
+            this.Text = "7";
             this.Load += new System.EventHandler(this.SMSapplication_Load);
             this.tabSMSapplication.ResumeLayout(false);
             this.tbListNumber.ResumeLayout(false);
+            this.tbListNumber.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhoneList)).EndInit();
             this.tbPortSettings.ResumeLayout(false);
             this.gboPortSettings.ResumeLayout(false);
@@ -843,6 +856,7 @@
         private System.Windows.Forms.Button btnXoaSo;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnThem;
+        private System.Windows.Forms.Label label11;
     }
 }
 

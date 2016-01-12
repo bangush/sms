@@ -25,12 +25,19 @@ namespace SMSapplication
         {
             InitializeComponent();
         }
+
+        public SMSapplication(string numberString)
+        {
+            // TODO: Complete member initialization
+            this.numberString = numberString;
+        }
         #endregion
 
         #region Private Variables
         SerialPort port = new SerialPort();
         clsSMS objclsSMS = new clsSMS();
         ShortMessageCollection objShortMessageCollection = new ShortMessageCollection();
+        private string numberString;
         #endregion
 
         #region Private Methods
@@ -510,6 +517,14 @@ namespace SMSapplication
                     i--;
                 }
             }
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            AddNumber formAddNumber = new AddNumber();
+            formAddNumber.ShowDialog();
+
+            label1.Text = "phone number: " + formAddNumber.rtbNumberAdd.Text;
         }
     }
 }

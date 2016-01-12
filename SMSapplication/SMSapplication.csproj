@@ -74,6 +74,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddNumber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNumber.Designer.cs">
+      <DependentUpon>AddNumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\clsSMS.cs" />
     <Compile Include="Classes\ShortMessage.cs" />
     <Compile Include="Classes\ShortMessageCollection.cs" />
@@ -85,6 +91,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddNumber.resx">
+      <DependentUpon>AddNumber.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SMSapplication.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SMSapplication.cs</DependentUpon>
