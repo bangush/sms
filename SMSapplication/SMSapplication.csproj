@@ -70,33 +70,46 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddNumber.cs">
+    <Compile Include="AddNumberForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddNumber.Designer.cs">
-      <DependentUpon>AddNumber.cs</DependentUpon>
+    <Compile Include="AddNumberForm.Designer.cs">
+      <DependentUpon>AddNumberForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\clsSMS.cs" />
+    <Compile Include="Classes\COMPortInfo.cs" />
+    <Compile Include="Classes\SettingDevice.cs" />
     <Compile Include="Classes\ShortMessage.cs" />
     <Compile Include="Classes\ShortMessageCollection.cs" />
-    <Compile Include="SMSapplication.cs">
+    <Compile Include="Classes\SMSConstants.cs" />
+    <Compile Include="SetupDeviceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SMSapplication.Designer.cs">
-      <DependentUpon>SMSapplication.cs</DependentUpon>
+    <Compile Include="SetupDeviceForm.Designer.cs">
+      <DependentUpon>SetupDeviceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SMSapplicationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SMSapplicationForm.Designer.cs">
+      <DependentUpon>SMSapplicationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddNumber.resx">
-      <DependentUpon>AddNumber.cs</DependentUpon>
+    <EmbeddedResource Include="AddNumberForm.resx">
+      <DependentUpon>AddNumberForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SMSapplication.resx">
+    <EmbeddedResource Include="SetupDeviceForm.resx">
+      <DependentUpon>SetupDeviceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SMSapplicationForm.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>SMSapplication.cs</DependentUpon>
+      <DependentUpon>SMSapplicationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -137,6 +150,15 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fileicon\11_Search-128.png" />
+    <Content Include="fileicon\1454919106_11_Search.png" />
+    <Content Include="fileicon\1454919348_sync.png" />
+    <Content Include="fileicon\1454919526_file_extension_xls.png" />
+    <Content Include="fileicon\1454919763_document-save.png" />
+    <Content Include="fileicon\1454919868_f-cross_256.png" />
+    <Content Include="fileicon\1454919989_Add.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

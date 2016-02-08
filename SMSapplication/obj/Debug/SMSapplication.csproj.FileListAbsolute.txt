@@ -6,7 +6,6 @@ C:\Users\cuong\Desktop\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSappl
 C:\Users\cuong\Desktop\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.csproj.GenerateResource.Cache
 C:\Users\cuong\Desktop\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.exe
 C:\Users\cuong\Desktop\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.pdb
-D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.SMSapplication.resources
 D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.Properties.Resources.resources
 D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.csproj.GenerateResource.Cache
 D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\bin\Debug\SMSapplication.exe.config
@@ -25,4 +24,6 @@ D:\Cuong\source\sms\SMSapplication\obj\Debug\SMSapplication.SMSapplication.resou
 D:\Cuong\source\sms\SMSapplication\obj\Debug\SMSapplication.Properties.Resources.resources
 D:\Cuong\source\sms\SMSapplication\obj\Debug\SMSapplication.csproj.GenerateResource.Cache
 D:\Cuong\source\sms\SMSapplication\obj\Debug\SMSapplication.AddNumber.resources
-D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.AddNumber.resources
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.AddNumberForm.resources
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.SetupDeviceForm.resources
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.SMSapplicationForm.resources

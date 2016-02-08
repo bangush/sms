@@ -333,8 +333,39 @@ namespace SMSapplication
                 throw ex; 
             }
             
-        }  
+        }
         #endregion
 
+        #region Read Manufaturer code
+        public string readSimCode(SerialPort port)
+        {
+            #region Execute Command
+
+            string recievedData = ExecCommand(port, "AT", 300, "No phone connected at ");
+            recievedData = ExecCommand(port, "AT+CMGF=1", 300, "Failed to set message format.");
+            String command = "AT+COPS?";
+            recievedData = ExecCommand(port, command, 300, "Failed to read sim code");
+            int uReceivedDataLength = recievedData.Length;
+
+            #endregion
+
+            #region If command is executed successfully
+            if (recievedData!=null)
+            {
+
+                #region Parsing SMS
+                string[] strSplit = recievedData.Split(',');
+                if (strSplit.Length >= 3)
+                {
+                    return strSplit[2];
+                }
+               
+                #endregion
+
+            }
+            #endregion
+            return "";
+        }
+        #endregion 
     }
 }
