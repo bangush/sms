@@ -1,0 +1,15 @@
+1/23/2016 9:16:55 AM ==> The given port name does not start with COM/com or does not resolve to a valid serial port.
+Parameter name: portName
+1/23/2016 5:21:09 PM ==> The requested resource is in use.
+
+1/23/2016 5:23:09 PM ==> The requested resource is in use.
+
+1/23/2016 5:32:07 PM ==> The requested resource is in use.
+
+1/23/2016 7:25:27 PM ==> Object reference not set to an instance of an object.
+1/23/2016 7:26:21 PM ==> Object reference not set to an instance of an object.
+1/23/2016 7:26:44 PM ==> Object reference not set to an instance of an object.
+1/23/2016 7:27:02 PM ==> Object reference not set to an instance of an object.
+1/23/2016 7:27:19 PM ==> Object reference not set to an instance of an object.
+1/23/2016 7:27:29 PM ==> Object reference not set to an instance of an object.
+1/23/2016 7:29:29 PM ==> Response received is incomplete.
