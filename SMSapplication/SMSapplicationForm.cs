@@ -417,12 +417,16 @@ namespace SMSapplication
 
         private void btnTimThietBi_Click(object sender, EventArgs e)
         {
+            DataTable dtDevice = new DataTable();
+
+            // Tao cau truc datatable
+            dtDevice.Columns.Add("Chọn", typeof(bool));
+            dtDevice.Columns.Add("Cổng", typeof(string));
+            dtDevice.Columns.Add("Mạng", typeof(string));
+            dtDevice.Columns.Add("Độ trễ", typeof(int));
+            dtDevice.Columns.Add("Giới hạn", typeof(int));
+
             dgvDevice.Rows.Clear();
-            dgvDevice.ColumnCount = 4;
-            dgvDevice.Columns[0].Name = "Cổng";
-            dgvDevice.Columns[1].Name = "Mạng";
-            dgvDevice.Columns[2].Name = "Độ trễ";
-            dgvDevice.Columns[3].Name = "Giới hạn";
 
             foreach (COMPortInfo comPort in COMPortInfo.GetCOMPortsInfo())
             {
@@ -440,13 +444,11 @@ namespace SMSapplication
                             SettingDevice setting = ReadXML(envPath+"\\"+"Mobifone"+".xml");
                             if (setting != null)
                             {
-                                string[] row = new string[] { portName, setting.Cops, setting.DelayTime.ToString(),setting.Limit.ToString()};
-                                dgvDevice.Rows.Add(row);
+                                dtDevice.Rows.Add(false, portName, setting.Cops, setting.DelayTime.ToString(),setting.Limit.ToString());
                             }
                             else
                             {
-                                string[] row = new string[] { portName, "Mobifone", "0", "0" };
-                                dgvDevice.Rows.Add(row);
+                                dtDevice.Rows.Add(false,portName, "Mobifone", "0", "0" );
                             }
                            
                         }
@@ -455,13 +457,11 @@ namespace SMSapplication
                             SettingDevice setting = ReadXML(envPath + "\\" + "Vinaphone" + ".xml");
                             if (setting != null)
                             {
-                                string[] row = new string[] { portName, setting.Cops, setting.DelayTime.ToString(), setting.Limit.ToString() };
-                                dgvDevice.Rows.Add(row);
+                                dtDevice.Rows.Add(false,portName, setting.Cops, setting.DelayTime.ToString(), setting.Limit.ToString());
                             }
                             else
                             {
-                                string[] row = new string[] { portName, "Vinaphone", "0", "0" };
-                                dgvDevice.Rows.Add(row);
+                                dtDevice.Rows.Add(false,portName, "Vinaphone", "0", "0");
                             }
                         }
                         if ("\"45204\"".Equals(copSim))
@@ -469,17 +469,13 @@ namespace SMSapplication
                             SettingDevice setting = ReadXML(envPath + "\\" + "Viettel" + ".xml");
                             if (setting != null)
                             {
-                                string[] row = new string[] { portName, setting.Cops, setting.DelayTime.ToString(), setting.Limit.ToString() };
-                                dgvDevice.Rows.Add(row);
+                                dtDevice.Rows.Add(false, portName, setting.Cops, setting.DelayTime.ToString(), setting.Limit.ToString());
                             }
                             else
                             {
-                                string[] row = new string[] { portName, "Viettel", "0", "0" };
-                                dgvDevice.Rows.Add(row);
+                                dtDevice.Rows.Add(false, portName, "Viettel", "0", "0");
                             }
                         }
-
-
                     }
 
                     else
@@ -489,6 +485,7 @@ namespace SMSapplication
                     }
                     objclsSMS.ClosePort(sPort);
                 }
+                dgvDevice.DataSource = dtDevice;
                 dgvDevice.Refresh();
             }
 
@@ -502,32 +499,34 @@ namespace SMSapplication
         private void dgvDevice_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Cai dat cau hinh
-            if (e.ColumnIndex == 4)
+            if (e.ColumnIndex == 5)
             {
                 int index = e.RowIndex;
                 SettingDevice settingDevice = new SettingDevice();
-                settingDevice.DeviceName = dgvDevice.Rows[index].Cells[0].Value.ToString();
-                settingDevice.Cops = dgvDevice.Rows[index].Cells[1].Value.ToString();
-                settingDevice.DelayTime = Int32.Parse(dgvDevice.Rows[index].Cells[2].Value.ToString());
-                settingDevice.Limit = Int32.Parse(dgvDevice.Rows[index].Cells[3].Value.ToString());
+                settingDevice.DeviceName = dgvDevice.Rows[index].Cells[1].Value.ToString();
+                settingDevice.Cops = dgvDevice.Rows[index].Cells[2].Value.ToString();
+                settingDevice.DelayTime = Int32.Parse(dgvDevice.Rows[index].Cells[3].Value.ToString());
+                settingDevice.Limit = Int32.Parse(dgvDevice.Rows[index].Cells[4].Value.ToString());
 
                 SetupDeviceForm deviceSetupForm = new SetupDeviceForm();
                 deviceSetupForm.dataSetup = settingDevice;
                 deviceSetupForm.ShowDialog();
 
-                dgvDevice.Rows[index].Cells[1].Value = deviceSetupForm.cbMangDiDong.SelectedValue.ToString();
-                dgvDevice.Rows[index].Cells[2].Value = deviceSetupForm.cbDoTre.SelectedValue.ToString();
-                dgvDevice.Rows[index].Cells[3].Value = deviceSetupForm.cbGioiHan.SelectedValue.ToString();
+                dgvDevice.Rows[index].Cells[2].Value = deviceSetupForm.cbMangDiDong.SelectedValue.ToString();
+                dgvDevice.Rows[index].Cells[3].Value = deviceSetupForm.cbDoTre.SelectedValue.ToString();
+                dgvDevice.Rows[index].Cells[4].Value = deviceSetupForm.cbGioiHan.SelectedValue.ToString();
 
                 dgvDevice.Refresh();
 
-            }
+
             // Create a new file in C:\\ dir
-            WriteXML(envPath + "\\" + dgvDevice.Rows[e.RowIndex].Cells[1].Value + ".xml",
-                new SettingDevice(dgvDevice.Rows[e.RowIndex].Cells[0].Value.ToString(),
-                    dgvDevice.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                    Int32.Parse(dgvDevice.Rows[e.RowIndex].Cells[2].Value.ToString()),
-                Int32.Parse(dgvDevice.Rows[e.RowIndex].Cells[3].Value.ToString())));
+            WriteXML(envPath + "\\" + dgvDevice.Rows[e.RowIndex].Cells[2].Value + ".xml",
+                new SettingDevice(dgvDevice.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                    dgvDevice.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                    Int32.Parse(dgvDevice.Rows[e.RowIndex].Cells[3].Value.ToString()),
+                Int32.Parse(dgvDevice.Rows[e.RowIndex].Cells[4].Value.ToString())));
+
+            }
         }
 
         private SettingDevice ReadXML(string path)
@@ -552,8 +551,6 @@ namespace SMSapplication
             {
                 return null;
             }
-           
-
             return setting;
         }
 
@@ -562,9 +559,6 @@ namespace SMSapplication
             XmlTextWriter textWriter = new XmlTextWriter(path, null);
             // Opens the document
             textWriter.WriteStartDocument();
-            // Write comments
-            textWriter.WriteComment("First Comment XmlTextWriter Sample Example");
-            textWriter.WriteComment("myXmlFile.xml in root dir");
             // Write first element
             textWriter.WriteStartElement("Root");
             textWriter.WriteStartElement("Device");
@@ -580,7 +574,7 @@ namespace SMSapplication
             // close writer
             textWriter.Close();
 
-            MessageBox.Show("OK");
+            MessageBox.Show("Cập nhật thành công");
         }
 
     }
