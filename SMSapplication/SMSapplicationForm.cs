@@ -523,18 +523,9 @@ namespace SMSapplication
             textWriter.WriteStartElement("Root");
             textWriter.WriteStartElement("Device");
             // Write next element
-            textWriter.WriteStartElement("Name", "");
-            textWriter.WriteValue("Vinaphone");
-            textWriter.WriteEndElement();
-            // Write one more element
-            textWriter.WriteStartElement("Delay", "");
-            textWriter.WriteValue(10);
-            textWriter.WriteEndElement();
-
-            // 
-            textWriter.WriteStartElement("Limit");
-            textWriter.WriteValue(200);
-            textWriter.WriteEndElement();
+            textWriter.WriteAttributeString("Name", "Vinaphone");
+            textWriter.WriteAttributeString("Delay", "10");
+            textWriter.WriteAttributeString("Limit", "100");
 
             textWriter.WriteEndElement();
             textWriter.WriteEndElement();
