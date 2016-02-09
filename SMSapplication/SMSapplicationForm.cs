@@ -520,6 +520,7 @@ namespace SMSapplication
             textWriter.WriteComment("First Comment XmlTextWriter Sample Example");
             textWriter.WriteComment("myXmlFile.xml in root dir");
             // Write first element
+            textWriter.WriteStartElement("Root");
             textWriter.WriteStartElement("Device");
             // Write next element
             textWriter.WriteStartElement("Name", "");
@@ -533,6 +534,9 @@ namespace SMSapplication
             // 
             textWriter.WriteStartElement("Limit");
             textWriter.WriteValue(200);
+            textWriter.WriteEndElement();
+
+            textWriter.WriteEndElement();
             textWriter.WriteEndElement();
             // Ends the document.
             textWriter.WriteEndDocument();
