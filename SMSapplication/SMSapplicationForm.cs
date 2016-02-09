@@ -501,7 +501,7 @@ namespace SMSapplication
         private static void ReadXML(string path)
         {
             XmlDocument xdoc = new XmlDocument();
-            xdoc.Load(path + "\\myXmFile.xml");
+            xdoc.Load(path);
 
             XmlNodeList NodeList = xdoc.DocumentElement.ChildNodes;
             foreach (XmlNode node in NodeList)
