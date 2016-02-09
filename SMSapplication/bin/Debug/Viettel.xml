@@ -1,1 +1,1 @@
-<?xml version="1.0"?><!--First Comment XmlTextWriter Sample Example--><!--myXmlFile.xml in root dir--><Root><Device Name="Viettel" Delay="15" Limit="50" /></Root>
+<?xml version="1.0"?><!--First Comment XmlTextWriter Sample Example--><!--myXmlFile.xml in root dir--><Root><Device Name="Viettel" Delay="0" Limit="0" /></Root>

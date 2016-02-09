@@ -32,12 +32,16 @@ namespace SMSapplication
         #endregion
 
         #region Private Variables
+
         // Port ket noi toi device 3g
         SerialPort port = new SerialPort();
         clsSMS objclsSMS = new clsSMS();
         ShortMessageCollection objShortMessageCollection = new ShortMessageCollection();
         List<SerialPort> listPortInitial = new List<SerialPort>();
         private string numberString;
+
+        // Duong dan thu muc cua chuong trinh
+        string envPath = Application.StartupPath;
         #endregion
 
         #region Private Methods
@@ -433,18 +437,46 @@ namespace SMSapplication
                         string copSim = objclsSMS.readSimCode(sPort);
                         if ("\"45201\"".Equals(copSim))
                         {
-                            string[] row = new string[] { portName, "Mobifone", "0", "0" };
-                            dgvDevice.Rows.Add(row);
+                            SettingDevice setting = ReadXML(envPath+"\\"+"Mobifone"+".xml");
+                            if (setting != null)
+                            {
+                                string[] row = new string[] { portName, setting.Cops, setting.DelayTime.ToString(),setting.Limit.ToString()};
+                                dgvDevice.Rows.Add(row);
+                            }
+                            else
+                            {
+                                string[] row = new string[] { portName, "Mobifone", "0", "0" };
+                                dgvDevice.Rows.Add(row);
+                            }
+                           
                         }
                         if ("\"45202\"".Equals(copSim))
                         {
-                            string[] row = new string[] { portName, "Vinaphone", "0", "0" };
-                            dgvDevice.Rows.Add(row);
+                            SettingDevice setting = ReadXML(envPath + "\\" + "Vinaphone" + ".xml");
+                            if (setting != null)
+                            {
+                                string[] row = new string[] { portName, setting.Cops, setting.DelayTime.ToString(), setting.Limit.ToString() };
+                                dgvDevice.Rows.Add(row);
+                            }
+                            else
+                            {
+                                string[] row = new string[] { portName, "Vinaphone", "0", "0" };
+                                dgvDevice.Rows.Add(row);
+                            }
                         }
                         if ("\"45204\"".Equals(copSim))
                         {
-                            string[] row = new string[] { portName, "Viettel", "0", "0" };
-                            dgvDevice.Rows.Add(row);
+                            SettingDevice setting = ReadXML(envPath + "\\" + "Viettel" + ".xml");
+                            if (setting != null)
+                            {
+                                string[] row = new string[] { portName, setting.Cops, setting.DelayTime.ToString(), setting.Limit.ToString() };
+                                dgvDevice.Rows.Add(row);
+                            }
+                            else
+                            {
+                                string[] row = new string[] { portName, "Viettel", "0", "0" };
+                                dgvDevice.Rows.Add(row);
+                            }
                         }
 
 
@@ -490,30 +522,44 @@ namespace SMSapplication
                 dgvDevice.Refresh();
 
             }
-
-            // Luu cau hinh dung xml
-            string envPath = Application.StartupPath;
             // Create a new file in C:\\ dir
-            WriteXML(envPath);
-            ReadXML(envPath);
+            WriteXML(envPath + "\\" + dgvDevice.Rows[e.RowIndex].Cells[1].Value + ".xml",
+                new SettingDevice(dgvDevice.Rows[e.RowIndex].Cells[0].Value.ToString(),
+                    dgvDevice.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                    Int32.Parse(dgvDevice.Rows[e.RowIndex].Cells[2].Value.ToString()),
+                Int32.Parse(dgvDevice.Rows[e.RowIndex].Cells[3].Value.ToString())));
         }
 
-        private static void ReadXML(string path)
+        private SettingDevice ReadXML(string path)
         {
-            XmlDocument xdoc = new XmlDocument();
-            xdoc.Load(path);
+            SettingDevice setting = null;
 
-            XmlNodeList NodeList = xdoc.DocumentElement.ChildNodes;
-            foreach (XmlNode node in NodeList)
+            try 
             {
-               string first = node.FirstChild.Value;
-               MessageBox.Show(first);
+                XmlDocument xdoc = new XmlDocument();
+                xdoc.Load(path);
+
+                foreach (XmlNode node in xdoc.DocumentElement)
+                {
+                    setting = new SettingDevice();
+                    setting.Cops = node.Attributes["Name"].Value.ToString();
+                    setting.DelayTime = Int32.Parse(node.Attributes["Delay"].Value.ToString());
+                    setting.Limit = Int32.Parse(node.Attributes["Limit"].Value.ToString());
+                    //MessageBox.Show(first);
+                }
             }
+            catch (IOException ex)
+            {
+                return null;
+            }
+           
+
+            return setting;
         }
 
-        private void WriteXML(string path)
+        private void WriteXML(string path, SettingDevice device)
         {
-            XmlTextWriter textWriter = new XmlTextWriter(path + "\\myXmFile.xml", null);
+            XmlTextWriter textWriter = new XmlTextWriter(path, null);
             // Opens the document
             textWriter.WriteStartDocument();
             // Write comments
@@ -523,9 +569,9 @@ namespace SMSapplication
             textWriter.WriteStartElement("Root");
             textWriter.WriteStartElement("Device");
             // Write next element
-            textWriter.WriteAttributeString("Name", "Vinaphone");
-            textWriter.WriteAttributeString("Delay", "10");
-            textWriter.WriteAttributeString("Limit", "100");
+            textWriter.WriteAttributeString("Name", device.Cops);
+            textWriter.WriteAttributeString("Delay", device.DelayTime.ToString());
+            textWriter.WriteAttributeString("Limit", device.Limit.ToString());
 
             textWriter.WriteEndElement();
             textWriter.WriteEndElement();
