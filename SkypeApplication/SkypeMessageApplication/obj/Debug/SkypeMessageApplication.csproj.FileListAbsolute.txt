@@ -1,0 +1,11 @@
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SkypeApplication\SkypeMessageApplication\bin\Debug\SkypeMessageApplication.exe.config
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SkypeApplication\SkypeMessageApplication\obj\Debug\Interop.SKYPE4COMLib.dll
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SkypeApplication\SkypeMessageApplication\obj\Debug\SkypeMessageApplication.csproj.ResolveComReference.cache
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SkypeApplication\SkypeMessageApplication\bin\Debug\SkypeMessageApplication.exe
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SkypeApplication\SkypeMessageApplication\bin\Debug\SkypeMessageApplication.pdb
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SkypeApplication\SkypeMessageApplication\obj\Debug\SkypeMessageApplication.csprojResolveAssemblyReference.cache
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SkypeApplication\SkypeMessageApplication\obj\Debug\SkypeMessageApplication.Form1.resources
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SkypeApplication\SkypeMessageApplication\obj\Debug\SkypeMessageApplication.Properties.Resources.resources
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SkypeApplication\SkypeMessageApplication\obj\Debug\SkypeMessageApplication.csproj.GenerateResource.Cache
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SkypeApplication\SkypeMessageApplication\obj\Debug\SkypeMessageApplication.exe
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SkypeApplication\SkypeMessageApplication\obj\Debug\SkypeMessageApplication.pdb
