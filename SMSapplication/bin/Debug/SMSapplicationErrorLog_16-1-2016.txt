@@ -1,4 +1,0 @@
-1/16/2016 9:11:49 PM ==> The port 'COM1' does not exist.
-1/16/2016 11:28:54 PM ==> The port 'COM1' does not exist.
-1/16/2016 11:31:40 PM ==> No success message was received.
-1/16/2016 11:33:10 PM ==> No success message was received.

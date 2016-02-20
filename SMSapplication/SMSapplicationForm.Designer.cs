@@ -28,10 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SMSapplicationForm));
             this.tabSMSapplication = new System.Windows.Forms.TabControl();
             this.tbListNumber = new System.Windows.Forms.TabPage();
             this.label11 = new System.Windows.Forms.Label();
+            this.btnThem = new System.Windows.Forms.Button();
+            this.btnXoaSo = new System.Windows.Forms.Button();
+            this.btnSaveFile = new System.Windows.Forms.Button();
+            this.btnOpenFile = new System.Windows.Forms.Button();
             this.dgvPhoneList = new System.Windows.Forms.DataGridView();
             this.colSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSDT = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +58,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnGui = new System.Windows.Forms.Button();
             this.btnSendSMS = new System.Windows.Forms.Button();
             this.gboConnectionStatus = new System.Windows.Forms.GroupBox();
             this.label23 = new System.Windows.Forms.Label();
@@ -60,22 +66,27 @@
             this.btnDisconnect = new System.Windows.Forms.Button();
             this.statusBar1 = new System.Windows.Forms.StatusBar();
             this.opfFileExcel = new System.Windows.Forms.OpenFileDialog();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dgvDevice = new System.Windows.Forms.DataGridView();
-            this.btnTimThietBi = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnThem = new System.Windows.Forms.Button();
-            this.btnXoaSo = new System.Windows.Forms.Button();
-            this.btnSaveFile = new System.Windows.Forms.Button();
-            this.btnOpenFile = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.txtMessage = new System.Windows.Forms.TextBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.btnCaNhanHoa = new System.Windows.Forms.Button();
+            this.lbSoKyTu = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.txtMessage = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.btnTimThietBi = new System.Windows.Forms.Button();
+            this.dgvDevice = new System.Windows.Forms.DataGridView();
+            this.ctMenuCaNhanHoa = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctmItemTen = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctmItemSDT = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctmItemThongTin1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctmItemThongTin2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctmItemThongTin3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.chuyểnSangKhôngDấuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.cbChonNhaMang = new System.Windows.Forms.ComboBox();
             this.tabSMSapplication.SuspendLayout();
             this.tbListNumber.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhoneList)).BeginInit();
@@ -85,6 +96,7 @@
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDevice)).BeginInit();
+            this.ctMenuCaNhanHoa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,7 +104,7 @@
             // 
             this.tabSMSapplication.Controls.Add(this.tbListNumber);
             this.tabSMSapplication.Controls.Add(this.tbPortSettings);
-            this.tabSMSapplication.Location = new System.Drawing.Point(10, 109);
+            this.tabSMSapplication.Location = new System.Drawing.Point(10, 107);
             this.tabSMSapplication.Name = "tabSMSapplication";
             this.tabSMSapplication.SelectedIndex = 0;
             this.tabSMSapplication.Size = new System.Drawing.Size(524, 387);
@@ -100,7 +112,7 @@
             // 
             // tbListNumber
             // 
-            this.tbListNumber.Controls.Add(this.label11);
+            this.tbListNumber.Controls.Add(this.cbChonNhaMang);
             this.tbListNumber.Controls.Add(this.btnThem);
             this.tbListNumber.Controls.Add(this.btnXoaSo);
             this.tbListNumber.Controls.Add(this.btnSaveFile);
@@ -117,11 +129,63 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(443, 326);
+            this.label11.Location = new System.Drawing.Point(389, 519);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(41, 13);
             this.label11.TabIndex = 5;
             this.label11.Text = "label11";
+            // 
+            // btnThem
+            // 
+            this.btnThem.Image = global::SMSapplication.Properties.Resources._1454919989_Add;
+            this.btnThem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThem.Location = new System.Drawing.Point(283, 323);
+            this.btnThem.Name = "btnThem";
+            this.btnThem.Size = new System.Drawing.Size(95, 23);
+            this.btnThem.TabIndex = 4;
+            this.btnThem.Text = "Thêm số gửi";
+            this.btnThem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
+            // 
+            // btnXoaSo
+            // 
+            this.btnXoaSo.Image = global::SMSapplication.Properties.Resources._1454919868_f_cross_256;
+            this.btnXoaSo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnXoaSo.Location = new System.Drawing.Point(183, 323);
+            this.btnXoaSo.Name = "btnXoaSo";
+            this.btnXoaSo.Size = new System.Drawing.Size(97, 23);
+            this.btnXoaSo.TabIndex = 3;
+            this.btnXoaSo.Text = "Xóa số chọn";
+            this.btnXoaSo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnXoaSo.UseVisualStyleBackColor = true;
+            this.btnXoaSo.Click += new System.EventHandler(this.btnXoaSo_Click);
+            // 
+            // btnSaveFile
+            // 
+            this.btnSaveFile.Image = global::SMSapplication.Properties.Resources._1454919763_document_save;
+            this.btnSaveFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaveFile.Location = new System.Drawing.Point(96, 323);
+            this.btnSaveFile.Name = "btnSaveFile";
+            this.btnSaveFile.Size = new System.Drawing.Size(84, 23);
+            this.btnSaveFile.TabIndex = 2;
+            this.btnSaveFile.Text = "Save ra file";
+            this.btnSaveFile.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSaveFile.UseVisualStyleBackColor = true;
+            this.btnSaveFile.Click += new System.EventHandler(this.btnSaveFile_Click);
+            // 
+            // btnOpenFile
+            // 
+            this.btnOpenFile.Image = global::SMSapplication.Properties.Resources._1454919526_file_extension_xls;
+            this.btnOpenFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOpenFile.Location = new System.Drawing.Point(3, 323);
+            this.btnOpenFile.Name = "btnOpenFile";
+            this.btnOpenFile.Size = new System.Drawing.Size(91, 23);
+            this.btnOpenFile.TabIndex = 1;
+            this.btnOpenFile.Text = "Mở file excel";
+            this.btnOpenFile.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnOpenFile.UseVisualStyleBackColor = true;
+            this.btnOpenFile.Click += new System.EventHandler(this.btnOpenFile_Click);
             // 
             // dgvPhoneList
             // 
@@ -356,6 +420,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Port Name";
             // 
+            // btnGui
+            // 
+            this.btnGui.Location = new System.Drawing.Point(454, 514);
+            this.btnGui.Name = "btnGui";
+            this.btnGui.Size = new System.Drawing.Size(75, 47);
+            this.btnGui.TabIndex = 6;
+            this.btnGui.Text = "Gửi tin";
+            this.btnGui.UseVisualStyleBackColor = true;
+            // 
             // btnSendSMS
             // 
             this.btnSendSMS.Location = new System.Drawing.Point(154, 19);
@@ -373,7 +446,7 @@
             this.gboConnectionStatus.Controls.Add(this.btnSendSMS);
             this.gboConnectionStatus.Controls.Add(this.lblConnectionStatus);
             this.gboConnectionStatus.Controls.Add(this.btnDisconnect);
-            this.gboConnectionStatus.Location = new System.Drawing.Point(93, 499);
+            this.gboConnectionStatus.Location = new System.Drawing.Point(10, 506);
             this.gboConnectionStatus.Name = "gboConnectionStatus";
             this.gboConnectionStatus.Size = new System.Drawing.Size(361, 56);
             this.gboConnectionStatus.TabIndex = 41;
@@ -423,139 +496,72 @@
             this.opfFileExcel.FileName = "openFileDialog1";
             this.opfFileExcel.FileOk += new System.ComponentModel.CancelEventHandler(this.opfFileExcel_FileOk);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(460, 518);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(78, 25);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.btnCaNhanHoa);
+            this.groupBox1.Controls.Add(this.lbSoKyTu);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.checkBox2);
             this.groupBox1.Controls.Add(this.txtMessage);
-            this.groupBox1.Location = new System.Drawing.Point(543, 124);
+            this.groupBox1.Location = new System.Drawing.Point(543, 122);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(307, 158);
+            this.groupBox1.Size = new System.Drawing.Size(307, 188);
             this.groupBox1.TabIndex = 77;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nội dung tin nhắn";
             // 
-            // groupBox2
+            // btnCaNhanHoa
             // 
-            this.groupBox2.Controls.Add(this.checkBox1);
-            this.groupBox2.Controls.Add(this.btnTimThietBi);
-            this.groupBox2.Controls.Add(this.dgvDevice);
-            this.groupBox2.Location = new System.Drawing.Point(542, 292);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(311, 276);
-            this.groupBox2.TabIndex = 78;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Chọn thiết bị";
+            this.btnCaNhanHoa.Image = global::SMSapplication.Properties.Resources._1455959346_message_add;
+            this.btnCaNhanHoa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCaNhanHoa.Location = new System.Drawing.Point(205, 139);
+            this.btnCaNhanHoa.Name = "btnCaNhanHoa";
+            this.btnCaNhanHoa.Size = new System.Drawing.Size(94, 23);
+            this.btnCaNhanHoa.TabIndex = 44;
+            this.btnCaNhanHoa.Text = "Cá nhân hóa";
+            this.btnCaNhanHoa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCaNhanHoa.UseVisualStyleBackColor = true;
+            this.btnCaNhanHoa.Click += new System.EventHandler(this.btnCaNhanHoa_Click);
             // 
-            // dgvDevice
+            // lbSoKyTu
             // 
-            this.dgvDevice.AllowUserToAddRows = false;
-            this.dgvDevice.BackgroundColor = System.Drawing.Color.White;
-            this.dgvDevice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDevice.GridColor = System.Drawing.SystemColors.Control;
-            this.dgvDevice.Location = new System.Drawing.Point(7, 20);
-            this.dgvDevice.Name = "dgvDevice";
-            this.dgvDevice.RowHeadersVisible = false;
-            this.dgvDevice.Size = new System.Drawing.Size(295, 199);
-            this.dgvDevice.TabIndex = 0;
-            this.dgvDevice.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDevice_CellClick);
+            this.lbSoKyTu.AutoSize = true;
+            this.lbSoKyTu.Location = new System.Drawing.Point(37, 160);
+            this.lbSoKyTu.Name = "lbSoKyTu";
+            this.lbSoKyTu.Size = new System.Drawing.Size(13, 13);
+            this.lbSoKyTu.TabIndex = 43;
+            this.lbSoKyTu.Text = "0";
+            this.lbSoKyTu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // btnTimThietBi
+            // label9
             // 
-            this.btnTimThietBi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnTimThietBi.Image = global::SMSapplication.Properties.Resources._1454919348_sync;
-            this.btnTimThietBi.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnTimThietBi.Location = new System.Drawing.Point(214, 226);
-            this.btnTimThietBi.Name = "btnTimThietBi";
-            this.btnTimThietBi.Size = new System.Drawing.Size(88, 23);
-            this.btnTimThietBi.TabIndex = 1;
-            this.btnTimThietBi.Text = "Tìm thiết bị";
-            this.btnTimThietBi.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTimThietBi.UseVisualStyleBackColor = true;
-            this.btnTimThietBi.Click += new System.EventHandler(this.btnTimThietBi_Click);
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(60, 161);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(30, 13);
+            this.label9.TabIndex = 42;
+            this.label9.Text = "/160";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pictureBox1
+            // label8
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(853, 101);
-            this.pictureBox1.TabIndex = 76;
-            this.pictureBox1.TabStop = false;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(3, 160);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(31, 13);
+            this.label8.TabIndex = 41;
+            this.label8.Text = "Ký tự";
             // 
-            // btnThem
+            // checkBox2
             // 
-            this.btnThem.Image = global::SMSapplication.Properties.Resources._1454919989_Add;
-            this.btnThem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThem.Location = new System.Drawing.Point(298, 323);
-            this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(95, 23);
-            this.btnThem.TabIndex = 4;
-            this.btnThem.Text = "Thêm số gửi";
-            this.btnThem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnThem.UseVisualStyleBackColor = true;
-            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
-            // 
-            // btnXoaSo
-            // 
-            this.btnXoaSo.Image = global::SMSapplication.Properties.Resources._1454919868_f_cross_256;
-            this.btnXoaSo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXoaSo.Location = new System.Drawing.Point(192, 323);
-            this.btnXoaSo.Name = "btnXoaSo";
-            this.btnXoaSo.Size = new System.Drawing.Size(97, 23);
-            this.btnXoaSo.TabIndex = 3;
-            this.btnXoaSo.Text = "Xóa số chọn";
-            this.btnXoaSo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnXoaSo.UseVisualStyleBackColor = true;
-            this.btnXoaSo.Click += new System.EventHandler(this.btnXoaSo_Click);
-            // 
-            // btnSaveFile
-            // 
-            this.btnSaveFile.Image = global::SMSapplication.Properties.Resources._1454919763_document_save;
-            this.btnSaveFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveFile.Location = new System.Drawing.Point(101, 323);
-            this.btnSaveFile.Name = "btnSaveFile";
-            this.btnSaveFile.Size = new System.Drawing.Size(84, 23);
-            this.btnSaveFile.TabIndex = 2;
-            this.btnSaveFile.Text = "Save ra file";
-            this.btnSaveFile.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSaveFile.UseVisualStyleBackColor = true;
-            this.btnSaveFile.Click += new System.EventHandler(this.btnSaveFile_Click);
-            // 
-            // btnOpenFile
-            // 
-            this.btnOpenFile.Image = global::SMSapplication.Properties.Resources._1454919526_file_extension_xls;
-            this.btnOpenFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOpenFile.Location = new System.Drawing.Point(3, 323);
-            this.btnOpenFile.Name = "btnOpenFile";
-            this.btnOpenFile.Size = new System.Drawing.Size(91, 23);
-            this.btnOpenFile.TabIndex = 1;
-            this.btnOpenFile.Text = "Mở file excel";
-            this.btnOpenFile.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOpenFile.UseVisualStyleBackColor = true;
-            this.btnOpenFile.Click += new System.EventHandler(this.btnOpenFile_Click);
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(7, 253);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(294, 17);
-            this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "Tự động gửi từ thiết bị cùng mạng với số điện thoại nhận";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(7, 139);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(133, 17);
+            this.checkBox2.TabIndex = 40;
+            this.checkBox2.Text = "Trộn nội dung tin nhắn";
+            this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // txtMessage
             // 
@@ -568,44 +574,132 @@
             this.txtMessage.Text = "<HOTEN><DIENTHOAI><THONGTIN#1><THONGTIN#2><THONGTIN#3>Chao <HOTEN>, cam on ban da" +
     " mua <THONGTIN#1> tai <THONGTIN#2>. Moi thac mac vui long lien he 0919.61.1919";
             // 
-            // checkBox2
+            // groupBox2
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(7, 139);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(133, 17);
-            this.checkBox2.TabIndex = 40;
-            this.checkBox2.Text = "Trộn nội dung tin nhắn";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.groupBox2.Controls.Add(this.checkBox1);
+            this.groupBox2.Controls.Add(this.btnTimThietBi);
+            this.groupBox2.Controls.Add(this.dgvDevice);
+            this.groupBox2.Location = new System.Drawing.Point(540, 316);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(313, 252);
+            this.groupBox2.TabIndex = 78;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Chọn thiết bị";
             // 
-            // label8
+            // checkBox1
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(203, 139);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(31, 13);
-            this.label8.TabIndex = 41;
-            this.label8.Text = "Ký tự";
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(7, 229);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(294, 17);
+            this.checkBox1.TabIndex = 2;
+            this.checkBox1.Text = "Tự động gửi từ thiết bị cùng mạng với số điện thoại nhận";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // label9
+            // btnTimThietBi
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(271, 139);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(30, 13);
-            this.label9.TabIndex = 42;
-            this.label9.Text = "/160";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTimThietBi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnTimThietBi.Image = global::SMSapplication.Properties.Resources._1454919348_sync;
+            this.btnTimThietBi.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTimThietBi.Location = new System.Drawing.Point(214, 203);
+            this.btnTimThietBi.Name = "btnTimThietBi";
+            this.btnTimThietBi.Size = new System.Drawing.Size(88, 23);
+            this.btnTimThietBi.TabIndex = 1;
+            this.btnTimThietBi.Text = "Tìm thiết bị";
+            this.btnTimThietBi.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTimThietBi.UseVisualStyleBackColor = true;
+            this.btnTimThietBi.Click += new System.EventHandler(this.btnTimThietBi_Click);
             // 
-            // label10
+            // dgvDevice
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(233, 139);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(41, 13);
-            this.label10.TabIndex = 43;
-            this.label10.Text = "label10";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.dgvDevice.AllowUserToAddRows = false;
+            this.dgvDevice.BackgroundColor = System.Drawing.Color.White;
+            this.dgvDevice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDevice.GridColor = System.Drawing.SystemColors.Control;
+            this.dgvDevice.Location = new System.Drawing.Point(7, 19);
+            this.dgvDevice.Name = "dgvDevice";
+            this.dgvDevice.RowHeadersVisible = false;
+            this.dgvDevice.Size = new System.Drawing.Size(295, 176);
+            this.dgvDevice.TabIndex = 0;
+            this.dgvDevice.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDevice_CellClick);
+            // 
+            // ctMenuCaNhanHoa
+            // 
+            this.ctMenuCaNhanHoa.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ctmItemTen,
+            this.ctmItemSDT,
+            this.ctmItemThongTin1,
+            this.ctmItemThongTin2,
+            this.ctmItemThongTin3,
+            this.toolStripSeparator1,
+            this.chuyểnSangKhôngDấuToolStripMenuItem});
+            this.ctMenuCaNhanHoa.Name = "contextMenuStrip1";
+            this.ctMenuCaNhanHoa.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.ctMenuCaNhanHoa.Size = new System.Drawing.Size(204, 142);
+            // 
+            // ctmItemTen
+            // 
+            this.ctmItemTen.Name = "ctmItemTen";
+            this.ctmItemTen.Size = new System.Drawing.Size(203, 22);
+            this.ctmItemTen.Text = "Tên";
+            this.ctmItemTen.Click += new System.EventHandler(this.ctmItemTen_Click);
+            // 
+            // ctmItemSDT
+            // 
+            this.ctmItemSDT.Name = "ctmItemSDT";
+            this.ctmItemSDT.Size = new System.Drawing.Size(203, 22);
+            this.ctmItemSDT.Text = "Số điện thoại";
+            this.ctmItemSDT.Click += new System.EventHandler(this.ctmItemSDT_Click);
+            // 
+            // ctmItemThongTin1
+            // 
+            this.ctmItemThongTin1.Name = "ctmItemThongTin1";
+            this.ctmItemThongTin1.Size = new System.Drawing.Size(203, 22);
+            this.ctmItemThongTin1.Text = "Thông tin #1";
+            this.ctmItemThongTin1.Click += new System.EventHandler(this.ctmItemThongTin1_Click);
+            // 
+            // ctmItemThongTin2
+            // 
+            this.ctmItemThongTin2.Name = "ctmItemThongTin2";
+            this.ctmItemThongTin2.Size = new System.Drawing.Size(203, 22);
+            this.ctmItemThongTin2.Text = "Thông tin #2";
+            this.ctmItemThongTin2.Click += new System.EventHandler(this.ctmItemThongTin2_Click);
+            // 
+            // ctmItemThongTin3
+            // 
+            this.ctmItemThongTin3.Name = "ctmItemThongTin3";
+            this.ctmItemThongTin3.Size = new System.Drawing.Size(203, 22);
+            this.ctmItemThongTin3.Text = "Thông tin #3";
+            this.ctmItemThongTin3.Click += new System.EventHandler(this.ctmItemThongTin3_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(200, 6);
+            // 
+            // chuyểnSangKhôngDấuToolStripMenuItem
+            // 
+            this.chuyểnSangKhôngDấuToolStripMenuItem.Name = "chuyểnSangKhôngDấuToolStripMenuItem";
+            this.chuyểnSangKhôngDấuToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.chuyểnSangKhôngDấuToolStripMenuItem.Text = "Chuyển sang không dấu";
+            this.chuyểnSangKhôngDấuToolStripMenuItem.Click += new System.EventHandler(this.chuyểnSangKhôngDấuToolStripMenuItem_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(864, 101);
+            this.pictureBox1.TabIndex = 76;
+            this.pictureBox1.TabStop = false;
+            // 
+            // cbChonNhaMang
+            // 
+            this.cbChonNhaMang.FormattingEnabled = true;
+            this.cbChonNhaMang.Location = new System.Drawing.Point(384, 324);
+            this.cbChonNhaMang.Name = "cbChonNhaMang";
+            this.cbChonNhaMang.Size = new System.Drawing.Size(126, 21);
+            this.cbChonNhaMang.TabIndex = 5;
             // 
             // SMSapplicationForm
             // 
@@ -613,9 +707,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(864, 594);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.btnGui);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.statusBar1);
             this.Controls.Add(this.gboConnectionStatus);
@@ -626,7 +721,6 @@
             this.Load += new System.EventHandler(this.SMSapplication_Load);
             this.tabSMSapplication.ResumeLayout(false);
             this.tbListNumber.ResumeLayout(false);
-            this.tbListNumber.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhoneList)).EndInit();
             this.tbPortSettings.ResumeLayout(false);
             this.gboPortSettings.ResumeLayout(false);
@@ -638,8 +732,10 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDevice)).EndInit();
+            this.ctMenuCaNhanHoa.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -678,7 +774,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dgvDevice;
@@ -691,7 +786,18 @@
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lbSoKyTu;
+        private System.Windows.Forms.Button btnGui;
+        private System.Windows.Forms.Button btnCaNhanHoa;
+        private System.Windows.Forms.ContextMenuStrip ctMenuCaNhanHoa;
+        private System.Windows.Forms.ToolStripMenuItem ctmItemTen;
+        private System.Windows.Forms.ToolStripMenuItem ctmItemSDT;
+        private System.Windows.Forms.ToolStripMenuItem ctmItemThongTin1;
+        private System.Windows.Forms.ToolStripMenuItem ctmItemThongTin2;
+        private System.Windows.Forms.ToolStripMenuItem ctmItemThongTin3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem chuyểnSangKhôngDấuToolStripMenuItem;
+        private System.Windows.Forms.ComboBox cbChonNhaMang;
     }
 }
 

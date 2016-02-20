@@ -1,5 +1,0 @@
-12/21/2015 8:37:28 PM ==> The port 'COM1' does not exist.
-12/21/2015 8:37:31 PM ==> The port 'COM1' does not exist.
-12/21/2015 8:37:32 PM ==> The port 'COM1' does not exist.
-12/21/2015 8:37:33 PM ==> The port 'COM1' does not exist.
-12/21/2015 8:37:33 PM ==> The port 'COM1' does not exist.

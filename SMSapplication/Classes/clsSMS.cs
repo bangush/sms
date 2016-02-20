@@ -7,11 +7,14 @@ using System.Text;
 using System.IO.Ports;
 using System.Threading;
 using System.Text.RegularExpressions;
+using SMSapplication.Classes;
 
 namespace SMSapplication
 {
     public class clsSMS
     {
+
+        LogManager log = new LogManager();
 
         #region Open and Close Ports
         //Open Port
@@ -37,7 +40,7 @@ namespace SMSapplication
             }
             catch (Exception ex)
             {
-                throw ex;
+                log.ErrorLog(ex.Message);
             }
             return port;
         }

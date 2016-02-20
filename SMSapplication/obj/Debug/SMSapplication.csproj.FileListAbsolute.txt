@@ -24,6 +24,6 @@ D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSa
 D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\bin\Debug\SMSapplication.exe.config
 D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\bin\Debug\SMSapplication.exe
 D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\bin\Debug\SMSapplication.pdb
-D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.csprojResolveAssemblyReference.cache
 D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.exe
 D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.pdb
+D:\Desktop\android\cailaimay\AndroidStudioProjects\dangtinvn\SMSapplication\SMSapplication\obj\Debug\SMSapplication.csprojResolveAssemblyReference.cache

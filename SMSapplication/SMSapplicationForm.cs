@@ -35,9 +35,14 @@ namespace SMSapplication
 
         // Port ket noi toi device 3g
         SerialPort port = new SerialPort();
+
+        // Lop xu ly at command
         clsSMS objclsSMS = new clsSMS();
         ShortMessageCollection objShortMessageCollection = new ShortMessageCollection();
         List<SerialPort> listPortInitial = new List<SerialPort>();
+
+        // Lop xu ly log
+        LogManager log = new LogManager();
         private string numberString;
 
         // Duong dan thu muc cua chuong trinh
@@ -68,7 +73,7 @@ namespace SMSapplication
         {
             try
             {
-                #region Display all available COM Ports
+                #region Hien thi cac port có the su dung
 
                 foreach (COMPortInfo comPort in COMPortInfo.GetCOMPortsInfo())
                 {
@@ -81,10 +86,33 @@ namespace SMSapplication
 
                 #endregion
 
-                //Remove tab pages
-                this.tabSMSapplication.TabPages.Remove(tbListNumber);
 
                 this.btnDisconnect.Enabled = false;
+
+                #region Hien thi so ky tu 
+
+                lbSoKyTu.Text = txtMessage.Text.Length.ToString();
+
+                #endregion
+
+                #region Load du lieu cho combobox chon cac so thuoc nha mang
+
+                // Mang di dong
+                var mangDatasource = new[] { 
+                new { Text = "Chọn tất cả", Value = "All" }, 
+                new { Text = "Mobifone", Value = "Mobifone" }, 
+                new { Text = "Viettel", Value = "Viettel" },
+                new { Text = "Vinaphone", Value = "Vinaphone" },
+                new { Text = "Other", Value = "Other" },
+                new { Text = "Số đã gửi", Value = "Sent" },
+                new { Text = "Số gửi lỗi", Value = "Error" }
+            };
+
+                cbChonNhaMang.DataSource = mangDatasource;
+                cbChonNhaMang.DisplayMember = "Text";
+                cbChonNhaMang.ValueMember = "Value";
+
+                #endregion
             }
             catch (Exception ex)
             {
@@ -182,45 +210,22 @@ namespace SMSapplication
 
 
         }
-
         #endregion
 
         #region Error Log
         public void ErrorLog(string Message)
         {
             StreamWriter sw = null;
-
             try
             {
                 WriteStatusBar(Message);
 
-                string sLogFormat = DateTime.Now.ToShortDateString().ToString() + " " + DateTime.Now.ToLongTimeString().ToString() + " ==> ";
-                //string sPathName = @"E:\";
-                string sPathName = @"SMSapplicationErrorLog_";
-
-                string sYear = DateTime.Now.Year.ToString();
-                string sMonth = DateTime.Now.Month.ToString();
-                string sDay = DateTime.Now.Day.ToString();
-
-                string sErrorTime = sDay + "-" + sMonth + "-" + sYear;
-
-                sw = new StreamWriter(sPathName + sErrorTime + ".txt", true);
-
-                sw.WriteLine(sLogFormat + Message);
-                sw.Flush();
+                log.ErrorLog(Message);
 
             }
             catch (Exception ex)
             {
-                //ErrorLog(ex.ToString());
-            }
-            finally
-            {
-                if (sw != null)
-                {
-                    sw.Dispose();
-                    sw.Close();
-                }
+                ErrorLog(ex.Message);
             }
 
         }
@@ -408,13 +413,6 @@ namespace SMSapplication
             label11.Text = "phone number: " + formAddNumber.rtbNumberAdd.Text;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-            string copSim = objclsSMS.readSimCode(this.port);
-            MessageBox.Show(copSim);
-        }
-
         private void btnTimThietBi_Click(object sender, EventArgs e)
         {
             DataTable dtDevice = new DataTable();
@@ -425,8 +423,6 @@ namespace SMSapplication
             dtDevice.Columns.Add("Mạng", typeof(string));
             dtDevice.Columns.Add("Độ trễ", typeof(int));
             dtDevice.Columns.Add("Giới hạn", typeof(int));
-
-            dgvDevice.Rows.Clear();
 
             foreach (COMPortInfo comPort in COMPortInfo.GetCOMPortsInfo())
             {
@@ -576,6 +572,59 @@ namespace SMSapplication
 
             MessageBox.Show("Cập nhật thành công");
         }
+
+        private void btnCaNhanHoa_Click(object sender, EventArgs e)
+        {
+
+                ctMenuCaNhanHoa.Show(MousePosition);
+
+        }
+
+        // Ham Them Text chung
+        private void themTextVaoMessage(string chuoiThem)
+        {
+            var selectionIndex = txtMessage.SelectionStart;
+            txtMessage.Text = txtMessage.Text.Insert(selectionIndex, chuoiThem);
+            txtMessage.SelectionStart = selectionIndex + chuoiThem.Length;
+        }
+        private void ctmItemTen_Click(object sender, EventArgs e)
+        {
+            themTextVaoMessage(SMSConstants.AddMessage_HoTen);
+            
+        }
+
+        private void ctmItemSDT_Click(object sender, EventArgs e)
+        {
+            themTextVaoMessage(SMSConstants.AddMessage_SoDienThoai);
+        }
+
+        private void ctmItemThongTin1_Click(object sender, EventArgs e)
+        {
+            themTextVaoMessage(SMSConstants.AddMessage_ThongTin1);
+        }
+
+        private void ctmItemThongTin2_Click(object sender, EventArgs e)
+        {
+            themTextVaoMessage(SMSConstants.AddMessage_ThongTin2);
+        }
+
+        private void ctmItemThongTin3_Click(object sender, EventArgs e)
+        {
+            themTextVaoMessage(SMSConstants.AddMessage_ThongTin3);
+        }
+
+        private void chuyểnSangKhôngDấuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string messageText = txtMessage.Text;
+            if (messageText != "")
+            {
+                string convertText = Utils.chuyenSangKhongDau(messageText);
+                txtMessage.Text = convertText;
+            }
+        }
+
+
+
 
     }
 }
