@@ -43,7 +43,6 @@ namespace SMSapplication
 
         // Lop xu ly log
         LogManager log = new LogManager();
-        private string numberString;
 
         // Duong dan thu muc cua chuong trinh
         string envPath = Application.StartupPath;
@@ -83,13 +82,13 @@ namespace SMSapplication
                     }
 
                 }
-
+                btnThem.Enabled = false;
+                cbChonNhaMang.Enabled = true;
                 #endregion
 
 
-                this.btnDisconnect.Enabled = false;
 
-                #region Hien thi so ky tu 
+                #region Hien thi so ky tu
 
                 lbSoKyTu.Text = txtMessage.Text.Length.ToString();
 
@@ -98,7 +97,8 @@ namespace SMSapplication
                 #region Load du lieu cho combobox chon cac so thuoc nha mang
 
                 // Mang di dong
-                var mangDatasource = new[] { 
+                var mangDatasource = new[] {
+                 new { Text = "-Lọc Danh Sách-", Value = "" },
                 new { Text = "Chọn tất cả", Value = "All" }, 
                 new { Text = "Mobifone", Value = "Mobifone" }, 
                 new { Text = "Viettel", Value = "Viettel" },
@@ -113,6 +113,9 @@ namespace SMSapplication
                 cbChonNhaMang.ValueMember = "Value";
 
                 #endregion
+
+                // Tim Thiet Bi
+                timThietBi();
             }
             catch (Exception ex)
             {
@@ -122,36 +125,36 @@ namespace SMSapplication
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            try
-            {
-                //Open communication port 
-                this.port = objclsSMS.OpenPort(this.cboPortName.Text, Convert.ToInt32(this.cboBaudRate.Text), Convert.ToInt32(this.cboDataBits.Text), Convert.ToInt32(this.txtReadTimeOut.Text), Convert.ToInt32(this.txtWriteTimeOut.Text));
+            //try
+            //{
+            //    //Open communication port 
+            //    this.port = objclsSMS.OpenPort(this.cboPortName.Text, Convert.ToInt32(this.cboBaudRate.Text), Convert.ToInt32(this.cboDataBits.Text), Convert.ToInt32(this.txtReadTimeOut.Text), Convert.ToInt32(this.txtWriteTimeOut.Text));
 
-                if (this.port != null)
-                {
-                    this.gboPortSettings.Enabled = false;
+            //    if (this.port != null)
+            //    {
+            //        this.gboPortSettings.Enabled = false;
 
-                    //MessageBox.Show("Modem is connected at PORT " + this.cboPortName.Text);
-                    this.statusBar1.Text = "Modem is connected at PORT " + this.cboPortName.Text;
+            //        //MessageBox.Show("Modem is connected at PORT " + this.cboPortName.Text);
+            //        this.statusBar1.Text = "Modem is connected at PORT " + this.cboPortName.Text;
 
-                    //Add tab pages
-                    this.tabSMSapplication.TabPages.Add(tbListNumber);
+            //        //Add tab pages
+            //        //this.tabSMSapplication.TabPages.Add(tbListNumber);
 
-                    this.lblConnectionStatus.Text = "Connected at " + this.cboPortName.Text;
-                    this.btnDisconnect.Enabled = true;
+            //        this.lblConnectionStatus.Text = "Connected at " + this.cboPortName.Text;
+            //        this.btnDisconnect.Enabled = true;
 
-                }
+            //    }
 
-                else
-                {
-                    //MessageBox.Show("Invalid port settings");
-                    this.statusBar1.Text = "Invalid port settings";
-                }
-            }
-            catch (Exception ex)
-            {
-                ErrorLog(ex.Message);
-            }
+            //    else
+            //    {
+            //        //MessageBox.Show("Invalid port settings");
+            //        this.statusBar1.Text = "Invalid port settings";
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    ErrorLog(ex.Message);
+            //}
 
         }
         private void btnDisconnect_Click(object sender, EventArgs e)
@@ -164,51 +167,11 @@ namespace SMSapplication
                 //Remove tab pages
                 this.tabSMSapplication.TabPages.Remove(tbListNumber);
 
-                this.lblConnectionStatus.Text = "Not Connected";
-                this.btnDisconnect.Enabled = false;
-
             }
             catch (Exception ex)
             {
                 ErrorLog(ex.Message);
             }
-        }
-
-        private void btnSendSMS_Click(object sender, EventArgs e)
-        {
-            int rowsCount = dgvPhoneList.Rows.Count;
-            if (rowsCount != 0)
-            {
-                // Read phone number from Datagridview
-                for (int i = 0; i < dgvPhoneList.Rows.Count; i++)
-                {
-                    //.............................................. Send SMS ....................................................
-                    try
-                    {
-
-                        if (objclsSMS.sendMsg(this.port, dgvPhoneList.Rows[i].Cells[1].Value.ToString(), this.txtMessage.Text))
-                        {
-                            this.statusBar1.Text = "Message " + i + " has sent successfully";
-                            dgvPhoneList.Rows[i].Cells[3].Value = "Gửi thành công";
-                        }
-                        else
-                        {
-                            //MessageBox.Show("Failed to send message");
-                            this.statusBar1.Text = "Failed to send message";
-                        }
-
-                    }
-                    catch (Exception ex)
-                    {
-                        ErrorLog(ex.Message);
-                    }
-                    dgvPhoneList.Refresh();
-                    Thread.Sleep(7000);
-                }
-            }
-
-
-
         }
         #endregion
 
@@ -286,24 +249,39 @@ namespace SMSapplication
                         oda.Fill(dt);
                         con.Close();
 
+                        DataTable dtDoVaoBang = new DataTable();
+
+                        dtDoVaoBang.Columns.Add("Chọn", typeof(bool));
+                        dtDoVaoBang.Columns.Add("Số điện thoại", typeof(string));
+                        dtDoVaoBang.Columns.Add("Họ tên", typeof(string));
+                        dtDoVaoBang.Columns.Add("#1", typeof(string));
+                        dtDoVaoBang.Columns.Add("#2", typeof(string));
+                        dtDoVaoBang.Columns.Add("#3", typeof(string));
+                        dtDoVaoBang.Columns.Add("Tình trạng", typeof(string));
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            dtDoVaoBang.Rows.Add(false, PhoneNumberUtil.isBatDauBangKhong(row[0].ToString()) ? row[0] : "0" + row[0], row[1], row[2], row[3], row[4]);
+                        }
+
                         //Populate DataGridView.
-                        dgvPhoneList.DataSource = dt;
+                        dgvPhoneList.DataSource = dtDoVaoBang;
                     }
                 }
             }
 
             // Checkbox chon vao gridview
-            DataGridViewCheckBoxColumn dgvCmb = new DataGridViewCheckBoxColumn();
-            dgvCmb.ValueType = typeof(bool);
-            dgvCmb.Name = "chbChon";
-            dgvCmb.HeaderText = "Chọn";
-            dgvPhoneList.Columns.Add(dgvCmb);
+            //DataGridViewCheckBoxColumn dgvCmb = new DataGridViewCheckBoxColumn();
+            //dgvCmb.ValueType = typeof(bool);
+            //dgvCmb.Name = "chbChon";
+            //dgvCmb.HeaderText = "Chọn";
+            //dgvPhoneList.Columns.Add(dgvCmb);
 
             // Textbox da gui vao gridview
-            DataGridViewTextBoxColumn dgvTv = new DataGridViewTextBoxColumn();
-            dgvTv.Name = "tvGui";
-            dgvTv.HeaderText = "Gửi";
-            dgvPhoneList.Columns.Add(dgvTv);
+            //DataGridViewTextBoxColumn dgvTv = new DataGridViewTextBoxColumn();
+            //dgvTv.Name = "tvGui";
+            //dgvTv.HeaderText = "Gửi";
+            //dgvPhoneList.Columns.Add(dgvTv);
 
             dgvPhoneList.Refresh();
         }
@@ -338,9 +316,11 @@ namespace SMSapplication
                 // Export title
                 for (int t = 0; t < dGV.ColumnCount; t++)
                 {
-                    if (!"chbChon".Equals(dGV.Columns[t].Name))
+                    if (!"colChon".Equals(dGV.Columns[t].Name) && !"colGui".Equals(dGV.Columns[t].Name))
                     {
-                        xlWorkSheet.Cells[1, t + 1].Value = dGV.Columns[t].Name;
+
+                            xlWorkSheet.Cells[1, t].Value = dGV.Columns[t].HeaderText;
+                       
                     }
 
                 }
@@ -348,10 +328,10 @@ namespace SMSapplication
                 // Export data
                 for (i = 0; i < dGV.RowCount; i++)
                 {
-                    for (j = 0; j < dGV.ColumnCount; j++)
+                    for (j = 1; j < dGV.ColumnCount; j++)
                     {
                         DataGridViewCell cell = dGV[j, i];
-                        xlWorkSheet.Cells[i + 2, j + 1] = cell.Value;
+                        xlWorkSheet.Cells[i + 2, j] = cell.Value;
                     }
                 }
 
@@ -397,7 +377,7 @@ namespace SMSapplication
             {
                 row = dgvPhoneList.Rows[i];
 
-                if (Convert.ToBoolean(row.Cells[2].Value) == true)
+                if (Convert.ToBoolean(row.Cells[0].Value) == true)
                 {
                     dgvPhoneList.Rows.Remove(row);
                     i--;
@@ -411,10 +391,20 @@ namespace SMSapplication
             formAddNumber.ShowDialog();
 
             label11.Text = "phone number: " + formAddNumber.rtbNumberAdd.Text;
+            dgvPhoneList.Rows.Add(false, "", formAddNumber.rtbNumberAdd.Text, "","","","");
+
         }
 
         private void btnTimThietBi_Click(object sender, EventArgs e)
         {
+            timThietBi();
+        }
+
+        private void timThietBi()
+        {
+
+            dgvDevice.Columns.Clear();
+
             DataTable dtDevice = new DataTable();
 
             // Tao cau truc datatable
@@ -437,27 +427,27 @@ namespace SMSapplication
                         string copSim = objclsSMS.readSimCode(sPort);
                         if ("\"45201\"".Equals(copSim))
                         {
-                            SettingDevice setting = ReadXML(envPath+"\\"+"Mobifone"+".xml");
+                            SettingDevice setting = ReadXML(envPath + "\\" + "Mobifone" + ".xml");
                             if (setting != null)
                             {
-                                dtDevice.Rows.Add(false, portName, setting.Cops, setting.DelayTime.ToString(),setting.Limit.ToString());
+                                dtDevice.Rows.Add(false, portName, setting.Cops, setting.DelayTime.ToString(), setting.Limit.ToString());
                             }
                             else
                             {
-                                dtDevice.Rows.Add(false,portName, "Mobifone", "0", "0" );
+                                dtDevice.Rows.Add(false, portName, "Mobifone", "0", "0");
                             }
-                           
+
                         }
                         if ("\"45202\"".Equals(copSim))
                         {
                             SettingDevice setting = ReadXML(envPath + "\\" + "Vinaphone" + ".xml");
                             if (setting != null)
                             {
-                                dtDevice.Rows.Add(false,portName, setting.Cops, setting.DelayTime.ToString(), setting.Limit.ToString());
+                                dtDevice.Rows.Add(false, portName, setting.Cops, setting.DelayTime.ToString(), setting.Limit.ToString());
                             }
                             else
                             {
-                                dtDevice.Rows.Add(false,portName, "Vinaphone", "0", "0");
+                                dtDevice.Rows.Add(false, portName, "Vinaphone", "0", "0");
                             }
                         }
                         if ("\"45204\"".Equals(copSim))
@@ -515,12 +505,12 @@ namespace SMSapplication
                 dgvDevice.Refresh();
 
 
-            // Create a new file in C:\\ dir
-            WriteXML(envPath + "\\" + dgvDevice.Rows[e.RowIndex].Cells[2].Value + ".xml",
-                new SettingDevice(dgvDevice.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                    dgvDevice.Rows[e.RowIndex].Cells[2].Value.ToString(),
-                    Int32.Parse(dgvDevice.Rows[e.RowIndex].Cells[3].Value.ToString()),
-                Int32.Parse(dgvDevice.Rows[e.RowIndex].Cells[4].Value.ToString())));
+                // Create a new file in C:\\ dir
+                WriteXML(envPath + "\\" + dgvDevice.Rows[e.RowIndex].Cells[2].Value + ".xml",
+                    new SettingDevice(dgvDevice.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                        dgvDevice.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                        Int32.Parse(dgvDevice.Rows[e.RowIndex].Cells[3].Value.ToString()),
+                    Int32.Parse(dgvDevice.Rows[e.RowIndex].Cells[4].Value.ToString())));
 
             }
         }
@@ -529,7 +519,7 @@ namespace SMSapplication
         {
             SettingDevice setting = null;
 
-            try 
+            try
             {
                 XmlDocument xdoc = new XmlDocument();
                 xdoc.Load(path);
@@ -576,7 +566,7 @@ namespace SMSapplication
         private void btnCaNhanHoa_Click(object sender, EventArgs e)
         {
 
-                ctMenuCaNhanHoa.Show(MousePosition);
+            ctMenuCaNhanHoa.Show(MousePosition);
 
         }
 
@@ -590,7 +580,7 @@ namespace SMSapplication
         private void ctmItemTen_Click(object sender, EventArgs e)
         {
             themTextVaoMessage(SMSConstants.AddMessage_HoTen);
-            
+
         }
 
         private void ctmItemSDT_Click(object sender, EventArgs e)
@@ -623,7 +613,218 @@ namespace SMSapplication
             }
         }
 
+        private void btnGui_Click(object sender, EventArgs e)
+        {
 
+            int soPhoneNumber = dgvPhoneList.Rows.Count;
+            int soThietBi = dgvDevice.Rows.Count;
+            if (soThietBi == 0)
+            {
+                MessageBox.Show("Không có thiết bị gửi tin");
+            }
+            else
+                if (soPhoneNumber != 0)
+                {
+                    for (int i = 0; i < dgvDevice.Rows.Count; i++)
+                    {
+                        if (Convert.ToBoolean(dgvDevice.Rows[i].Cells[0].Value) == true)
+                        {
+                            guiTinNhan(dgvDevice.Rows[i].Cells[1].Value.ToString(), dgvDevice.Rows[i].Cells[2].Value.ToString(), Int16.Parse(dgvDevice.Rows[i].Cells[3].Value.ToString()), Int32.Parse(dgvDevice.Rows[i].Cells[4].Value.ToString()), true);
+                        }
+                    }
+                }
+        }
+
+        void guiTinNhan(string cong, string mang, int doTre, int gioiHanTin, bool phanBietMang)
+        {
+            SerialPort portMoi = objclsSMS.OpenPort(cong, Convert.ToInt32(cboBaudRate.Text), Convert.ToInt32(cboDataBits.Text), Convert.ToInt32(txtReadTimeOut.Text), Convert.ToInt32(txtWriteTimeOut.Text));
+            if (portMoi != null)
+            {
+
+                // Neu nhu check box phan biet mang khi gui duoc chon
+                if (phanBietMang)
+                {
+                    for (int i = 0; i < dgvPhoneList.Rows.Count; i++)
+                    {
+                        try
+                        {
+                            // Lay dau so gom 3 chu so tu so dien thoai de kiem tra la mang gi
+                            string dauSo3So = dgvPhoneList.Rows[i].Cells[1].Value.ToString().Substring(0, 3);
+
+                            // Lay dau so gom  chu so tu so dien thoai de kiem tra la mang gi
+                            string dauSo4So = dgvPhoneList.Rows[i].Cells[1].Value.ToString().Substring(0, 4);
+
+                            if(cbThietBiCungMang.Checked)
+                            {
+                            // Neu dau so cua so dien thoai trung voi mang thi ta gui
+                            if (mang.Equals(PhoneNumberUtil.getTenNhaMang(dauSo3So)) || mang.Equals(PhoneNumberUtil.getTenNhaMang(dauSo4So)))
+                            {
+
+                                // Kiem tra checkbox xem so co duoc gui hay khong
+                                // Va kiem tra tinh trang xem da duoc gui hay chua
+                                if (Convert.ToBoolean(dgvPhoneList.Rows[i].Cells[0].Value) && ("".Equals(dgvPhoneList.Rows[i].Cells[6].Value.ToString()) || "Gửi thành công".Equals(dgvPhoneList.Rows[i].Cells[6].Value.ToString())))
+                                {
+                                    String textThayDoi = this.txtMessage.Text.Replace(SMSConstants.AddMessage_ThongTin1, dgvPhoneList.Rows[i].Cells[3].Value.ToString());
+                                    textThayDoi = textThayDoi.Replace(SMSConstants.AddMessage_ThongTin2, dgvPhoneList.Rows[i].Cells[4].Value.ToString());
+                                    textThayDoi = textThayDoi.Replace(SMSConstants.AddMessage_ThongTin3, dgvPhoneList.Rows[i].Cells[5].Value.ToString());
+                                    textThayDoi = textThayDoi.Replace(SMSConstants.AddMessage_HoTen, dgvPhoneList.Rows[i].Cells[2].Value.ToString());
+                                    textThayDoi = textThayDoi.Replace(SMSConstants.AddMessage_SoDienThoai, dgvPhoneList.Rows[i].Cells[1].Value.ToString());
+
+                                    if (objclsSMS.sendMsg(portMoi, dgvPhoneList.Rows[i].Cells[1].Value.ToString(), textThayDoi))
+                                    {
+                                        dgvPhoneList.Rows[i].Cells[6].Value = "Gửi thành công";
+                                    }
+                                    else
+                                    {
+                                        dgvPhoneList.Rows[i].Cells[6].Value = "Gửi thất bại";
+                                    }
+                                }
+                            }
+                            }
+                            else
+                            {
+                                // Kiem tra checkbox xem so co duoc gui hay khong
+                                // Va kiem tra tinh trang xem da duoc gui hay chua
+                                if (Convert.ToBoolean(dgvPhoneList.Rows[i].Cells[0].Value) && "".Equals(dgvPhoneList.Rows[i].Cells[6].Value.ToString()) || "Gửi thành công".Equals(dgvPhoneList.Rows[i].Cells[6].Value.ToString()))
+                                {
+                                    String textThayDoi = this.txtMessage.Text.Replace(SMSConstants.AddMessage_ThongTin1, dgvPhoneList.Rows[i].Cells[3].Value.ToString());
+                                    textThayDoi = textThayDoi.Replace(SMSConstants.AddMessage_ThongTin2, dgvPhoneList.Rows[i].Cells[4].Value.ToString());
+                                    textThayDoi = textThayDoi.Replace(SMSConstants.AddMessage_ThongTin3, dgvPhoneList.Rows[i].Cells[5].Value.ToString());
+                                    textThayDoi = textThayDoi.Replace(SMSConstants.AddMessage_HoTen, dgvPhoneList.Rows[i].Cells[2].Value.ToString());
+                                    textThayDoi = textThayDoi.Replace(SMSConstants.AddMessage_SoDienThoai, dgvPhoneList.Rows[i].Cells[1].Value.ToString());
+
+
+                                    if (objclsSMS.sendMsg(portMoi, dgvPhoneList.Rows[i].Cells[1].Value.ToString(), textThayDoi))
+                                    {
+                                        dgvPhoneList.Rows[i].Cells[6].Value = "Gửi thành công";
+                                    }
+                                    else
+                                    {
+                                        dgvPhoneList.Rows[i].Cells[6].Value = "Gửi thất bại";
+                                    }
+                                }
+                            }
+                           
+                        }
+                        catch (Exception ex)
+                        {
+                            // Truong hop gui loi tinh trang se la gui that bai
+                            dgvPhoneList.Rows[i].Cells[6].Value = "";
+
+                            // Ghi log neu nhu exception xay ra
+                            ErrorLog(ex.Message);
+                        }
+                        dgvPhoneList.Refresh();
+                        Thread.Sleep(doTre * 1000);
+                    }
+                }
+                else //Neu nhu checkbox gui phan biet mang khong duoc chon
+                {
+                    for (int i = 0; i < dgvPhoneList.Rows.Count; i++)
+                    {
+                        try
+                        {
+                            // Ta gui ma khong can phan biet mang
+                            // Chi kiem tra xem so co duoc chon de gui hay khong
+                            // Hay tinh trang la chua duoc gui
+                            if (Convert.ToBoolean(dgvPhoneList.Rows[i].Cells[0].Value) && "".Equals(dgvPhoneList.Rows[i].Cells[6].Value.ToString()))
+                            {
+                                if (objclsSMS.sendMsg(this.port, dgvPhoneList.Rows[i].Cells[1].Value.ToString(), this.txtMessage.Text))
+                                {
+                                    dgvPhoneList.Rows[i].Cells[6].Value = "Gửi thành công";
+                                }
+                                else
+                                {
+                                    dgvPhoneList.Rows[i].Cells[6].Value = "Gửi thất bại";
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // Truong hop gui loi tinh trang se la gui that bai
+                            dgvPhoneList.Rows[i].Cells[6].Value = "Gửi thất bại";
+
+                            // Ghi log neu nhu exception xay ra
+                            ErrorLog(ex.Message);
+                        }
+                        dgvPhoneList.Refresh();
+                        Thread.Sleep(doTre * 1000);
+                    }
+                }
+            }
+            portMoi.Close();
+        }
+
+        private void cbChonNhaMang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataGridViewRow row = new DataGridViewRow();
+            for (int i = 0; i < dgvPhoneList.Rows.Count; i++)
+            {
+                row = dgvPhoneList.Rows[i];
+                row.Cells[0].Value = false;
+
+            }
+            // Loc tat ca danh sach
+            if ("All".Equals(cbChonNhaMang.SelectedValue))
+            {
+                for (int i = 0; i < dgvPhoneList.Rows.Count; i++)
+                {
+                    row = dgvPhoneList.Rows[i];
+                    row.Cells[0].Value = true;
+
+                }
+            }
+
+            // Loc cac so la so viettel
+            locDanhSachSo(SMSConstants.ViettelProvider);
+
+            // Loc cac so la so mobifone
+            locDanhSachSo(SMSConstants.MobiphoneProvider);
+
+            // Loc cac so la so vinaphone
+            locDanhSachSo(SMSConstants.VinaphoneProvider);
+
+        }
+
+        /**
+         * Loc theo ten nha mang
+         * input ten cua nha mang
+         * output danh sach cac so thuoc nha mang
+         * */
+        private void locDanhSachSo(string nhaMangLoc)
+        {
+            string dauSo;
+
+            if (nhaMangLoc.Equals(cbChonNhaMang.SelectedValue))
+            {
+                DataGridViewRow row = new DataGridViewRow();
+                for (int i = 0; i < dgvPhoneList.Rows.Count; i++)
+                {
+                    row = dgvPhoneList.Rows[i];
+                    dauSo = row.Cells[1].Value.ToString().Substring(0, 3);
+                    if (PhoneNumberUtil.isTonTaiDauSo(dauSo))
+                    {
+                        string nhaMang = PhoneNumberUtil.getTenNhaMang(dauSo);
+                        if (nhaMangLoc.Equals(nhaMang))
+                        {
+                            row.Cells[0].Value = true;
+                        }
+                    }
+                    else
+                    {
+                        dauSo = row.Cells[1].Value.ToString().Substring(0, 4);
+                        if (PhoneNumberUtil.isTonTaiDauSo(dauSo))
+                        {
+                            string nhaMang = PhoneNumberUtil.getTenNhaMang(dauSo);
+                            if (nhaMangLoc.Equals(nhaMang))
+                            {
+                                row.Cells[0].Value = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
 
     }

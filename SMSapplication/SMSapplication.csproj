@@ -85,11 +85,18 @@
     <Compile Include="Classes\clsSMS.cs" />
     <Compile Include="Classes\COMPortInfo.cs" />
     <Compile Include="Classes\LogManager.cs" />
+    <Compile Include="Classes\PhoneNumberUtil.cs" />
     <Compile Include="Classes\SettingDevice.cs" />
     <Compile Include="Classes\ShortMessage.cs" />
     <Compile Include="Classes\ShortMessageCollection.cs" />
     <Compile Include="Classes\SMSConstants.cs" />
     <Compile Include="Classes\Utils.cs" />
+    <Compile Include="LogInForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogInForm.Designer.cs">
+      <DependentUpon>LogInForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SetupDeviceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +113,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddNumberForm.resx">
       <DependentUpon>AddNumberForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogInForm.resx">
+      <DependentUpon>LogInForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SetupDeviceForm.resx">
       <DependentUpon>SetupDeviceForm.cs</DependentUpon>

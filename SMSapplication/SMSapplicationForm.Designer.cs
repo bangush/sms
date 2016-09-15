@@ -32,15 +32,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SMSapplicationForm));
             this.tabSMSapplication = new System.Windows.Forms.TabControl();
             this.tbListNumber = new System.Windows.Forms.TabPage();
-            this.label11 = new System.Windows.Forms.Label();
+            this.cbChonNhaMang = new System.Windows.Forms.ComboBox();
             this.btnThem = new System.Windows.Forms.Button();
             this.btnXoaSo = new System.Windows.Forms.Button();
             this.btnSaveFile = new System.Windows.Forms.Button();
             this.btnOpenFile = new System.Windows.Forms.Button();
             this.dgvPhoneList = new System.Windows.Forms.DataGridView();
-            this.colSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSDT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colGui = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbPortSettings = new System.Windows.Forms.TabPage();
             this.gboPortSettings = new System.Windows.Forms.GroupBox();
             this.btnOK = new System.Windows.Forms.Button();
@@ -58,15 +55,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.btnGui = new System.Windows.Forms.Button();
-            this.btnSendSMS = new System.Windows.Forms.Button();
-            this.gboConnectionStatus = new System.Windows.Forms.GroupBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.lblConnectionStatus = new System.Windows.Forms.Label();
-            this.btnDisconnect = new System.Windows.Forms.Button();
             this.statusBar1 = new System.Windows.Forms.StatusBar();
             this.opfFileExcel = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chbNhieuNoiDung = new System.Windows.Forms.CheckBox();
             this.btnCaNhanHoa = new System.Windows.Forms.Button();
             this.lbSoKyTu = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -74,7 +68,7 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.txtMessage = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cbThietBiCungMang = new System.Windows.Forms.CheckBox();
             this.btnTimThietBi = new System.Windows.Forms.Button();
             this.dgvDevice = new System.Windows.Forms.DataGridView();
             this.ctMenuCaNhanHoa = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -86,13 +80,18 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.chuyểnSangKhôngDấuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.cbChonNhaMang = new System.Windows.Forms.ComboBox();
+            this.colChon = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colHoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSDT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colThamSo1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colThamSo2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colThamSo3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGui = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabSMSapplication.SuspendLayout();
             this.tbListNumber.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhoneList)).BeginInit();
             this.tbPortSettings.SuspendLayout();
             this.gboPortSettings.SuspendLayout();
-            this.gboConnectionStatus.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDevice)).BeginInit();
@@ -126,14 +125,15 @@
             this.tbListNumber.Text = "List Send";
             this.tbListNumber.UseVisualStyleBackColor = true;
             // 
-            // label11
+            // cbChonNhaMang
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(389, 519);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(41, 13);
-            this.label11.TabIndex = 5;
-            this.label11.Text = "label11";
+            this.cbChonNhaMang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbChonNhaMang.FormattingEnabled = true;
+            this.cbChonNhaMang.Location = new System.Drawing.Point(384, 324);
+            this.cbChonNhaMang.Name = "cbChonNhaMang";
+            this.cbChonNhaMang.Size = new System.Drawing.Size(126, 21);
+            this.cbChonNhaMang.TabIndex = 5;
+            this.cbChonNhaMang.SelectedIndexChanged += new System.EventHandler(this.cbChonNhaMang_SelectedIndexChanged);
             // 
             // btnThem
             // 
@@ -195,8 +195,12 @@
             this.dgvPhoneList.BackgroundColor = System.Drawing.Color.White;
             this.dgvPhoneList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPhoneList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colSTT,
+            this.colChon,
+            this.colHoTen,
             this.colSDT,
+            this.colThamSo1,
+            this.colThamSo2,
+            this.colThamSo3,
             this.colGui});
             this.dgvPhoneList.GridColor = System.Drawing.SystemColors.ControlLight;
             this.dgvPhoneList.Location = new System.Drawing.Point(0, 0);
@@ -204,23 +208,6 @@
             this.dgvPhoneList.RowHeadersVisible = false;
             this.dgvPhoneList.Size = new System.Drawing.Size(516, 306);
             this.dgvPhoneList.TabIndex = 0;
-            // 
-            // colSTT
-            // 
-            this.colSTT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colSTT.HeaderText = "STT";
-            this.colSTT.Name = "colSTT";
-            // 
-            // colSDT
-            // 
-            this.colSDT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colSDT.HeaderText = "SDT";
-            this.colSDT.Name = "colSDT";
-            // 
-            // colGui
-            // 
-            this.colGui.HeaderText = "Tình trạng";
-            this.colGui.Name = "colGui";
             // 
             // tbPortSettings
             // 
@@ -265,7 +252,6 @@
             this.btnOK.TabIndex = 14;
             this.btnOK.Text = "Connect";
             this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // txtWriteTimeOut
             // 
@@ -420,6 +406,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Port Name";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(389, 519);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(43, 13);
+            this.label11.TabIndex = 5;
+            this.label11.Text = "ftyftyfyft";
+            // 
             // btnGui
             // 
             this.btnGui.Location = new System.Drawing.Point(454, 514);
@@ -428,59 +423,7 @@
             this.btnGui.TabIndex = 6;
             this.btnGui.Text = "Gửi tin";
             this.btnGui.UseVisualStyleBackColor = true;
-            // 
-            // btnSendSMS
-            // 
-            this.btnSendSMS.Location = new System.Drawing.Point(154, 19);
-            this.btnSendSMS.Name = "btnSendSMS";
-            this.btnSendSMS.Size = new System.Drawing.Size(75, 25);
-            this.btnSendSMS.TabIndex = 40;
-            this.btnSendSMS.Text = "Send";
-            this.btnSendSMS.UseVisualStyleBackColor = true;
-            this.btnSendSMS.Click += new System.EventHandler(this.btnSendSMS_Click);
-            // 
-            // gboConnectionStatus
-            // 
-            this.gboConnectionStatus.BackColor = System.Drawing.Color.Transparent;
-            this.gboConnectionStatus.Controls.Add(this.label23);
-            this.gboConnectionStatus.Controls.Add(this.btnSendSMS);
-            this.gboConnectionStatus.Controls.Add(this.lblConnectionStatus);
-            this.gboConnectionStatus.Controls.Add(this.btnDisconnect);
-            this.gboConnectionStatus.Location = new System.Drawing.Point(10, 506);
-            this.gboConnectionStatus.Name = "gboConnectionStatus";
-            this.gboConnectionStatus.Size = new System.Drawing.Size(361, 56);
-            this.gboConnectionStatus.TabIndex = 41;
-            this.gboConnectionStatus.TabStop = false;
-            this.gboConnectionStatus.Text = "Connection Status";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(16, 19);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(100, 13);
-            this.label23.TabIndex = 37;
-            this.label23.Text = "Connection Status :";
-            // 
-            // lblConnectionStatus
-            // 
-            this.lblConnectionStatus.AutoSize = true;
-            this.lblConnectionStatus.ForeColor = System.Drawing.Color.Red;
-            this.lblConnectionStatus.Location = new System.Drawing.Point(25, 32);
-            this.lblConnectionStatus.Name = "lblConnectionStatus";
-            this.lblConnectionStatus.Size = new System.Drawing.Size(79, 13);
-            this.lblConnectionStatus.TabIndex = 36;
-            this.lblConnectionStatus.Text = "Not Connected";
-            // 
-            // btnDisconnect
-            // 
-            this.btnDisconnect.Enabled = false;
-            this.btnDisconnect.Location = new System.Drawing.Point(259, 19);
-            this.btnDisconnect.Name = "btnDisconnect";
-            this.btnDisconnect.Size = new System.Drawing.Size(75, 25);
-            this.btnDisconnect.TabIndex = 4;
-            this.btnDisconnect.Text = "Disconnect";
-            this.btnDisconnect.Click += new System.EventHandler(this.btnDisconnect_Click);
+            this.btnGui.Click += new System.EventHandler(this.btnGui_Click);
             // 
             // statusBar1
             // 
@@ -498,6 +441,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chbNhieuNoiDung);
             this.groupBox1.Controls.Add(this.btnCaNhanHoa);
             this.groupBox1.Controls.Add(this.lbSoKyTu);
             this.groupBox1.Controls.Add(this.label9);
@@ -510,6 +454,16 @@
             this.groupBox1.TabIndex = 77;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nội dung tin nhắn";
+            // 
+            // chbNhieuNoiDung
+            // 
+            this.chbNhieuNoiDung.AutoSize = true;
+            this.chbNhieuNoiDung.Location = new System.Drawing.Point(9, 151);
+            this.chbNhieuNoiDung.Name = "chbNhieuNoiDung";
+            this.chbNhieuNoiDung.Size = new System.Drawing.Size(124, 17);
+            this.chbNhieuNoiDung.TabIndex = 45;
+            this.chbNhieuNoiDung.Text = "Chọn nhiều nội dung";
+            this.chbNhieuNoiDung.UseVisualStyleBackColor = true;
             // 
             // btnCaNhanHoa
             // 
@@ -526,18 +480,17 @@
             // 
             // lbSoKyTu
             // 
-            this.lbSoKyTu.AutoSize = true;
-            this.lbSoKyTu.Location = new System.Drawing.Point(37, 160);
+            this.lbSoKyTu.Location = new System.Drawing.Point(36, 171);
             this.lbSoKyTu.Name = "lbSoKyTu";
-            this.lbSoKyTu.Size = new System.Drawing.Size(13, 13);
+            this.lbSoKyTu.Size = new System.Drawing.Size(26, 15);
             this.lbSoKyTu.TabIndex = 43;
-            this.lbSoKyTu.Text = "0";
+            this.lbSoKyTu.Text = "160";
             this.lbSoKyTu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(60, 161);
+            this.label9.Location = new System.Drawing.Point(60, 172);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(30, 13);
             this.label9.TabIndex = 42;
@@ -547,7 +500,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 160);
+            this.label8.Location = new System.Drawing.Point(3, 170);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(31, 13);
             this.label8.TabIndex = 41;
@@ -556,7 +509,7 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(7, 139);
+            this.checkBox2.Location = new System.Drawing.Point(8, 134);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(133, 17);
             this.checkBox2.TabIndex = 40;
@@ -571,12 +524,11 @@
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.Size = new System.Drawing.Size(295, 116);
             this.txtMessage.TabIndex = 39;
-            this.txtMessage.Text = "<HOTEN><DIENTHOAI><THONGTIN#1><THONGTIN#2><THONGTIN#3>Chao <HOTEN>, cam on ban da" +
-    " mua <THONGTIN#1> tai <THONGTIN#2>. Moi thac mac vui long lien he 0919.61.1919";
+            this.txtMessage.Text = "test";
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.checkBox1);
+            this.groupBox2.Controls.Add(this.cbThietBiCungMang);
             this.groupBox2.Controls.Add(this.btnTimThietBi);
             this.groupBox2.Controls.Add(this.dgvDevice);
             this.groupBox2.Location = new System.Drawing.Point(540, 316);
@@ -586,15 +538,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Chọn thiết bị";
             // 
-            // checkBox1
+            // cbThietBiCungMang
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(7, 229);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(294, 17);
-            this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "Tự động gửi từ thiết bị cùng mạng với số điện thoại nhận";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbThietBiCungMang.AutoSize = true;
+            this.cbThietBiCungMang.Location = new System.Drawing.Point(7, 229);
+            this.cbThietBiCungMang.Name = "cbThietBiCungMang";
+            this.cbThietBiCungMang.Size = new System.Drawing.Size(294, 17);
+            this.cbThietBiCungMang.TabIndex = 2;
+            this.cbThietBiCungMang.Text = "Tự động gửi từ thiết bị cùng mạng với số điện thoại nhận";
+            this.cbThietBiCungMang.UseVisualStyleBackColor = true;
             // 
             // btnTimThietBi
             // 
@@ -693,13 +645,41 @@
             this.pictureBox1.TabIndex = 76;
             this.pictureBox1.TabStop = false;
             // 
-            // cbChonNhaMang
+            // colChon
             // 
-            this.cbChonNhaMang.FormattingEnabled = true;
-            this.cbChonNhaMang.Location = new System.Drawing.Point(384, 324);
-            this.cbChonNhaMang.Name = "cbChonNhaMang";
-            this.cbChonNhaMang.Size = new System.Drawing.Size(126, 21);
-            this.cbChonNhaMang.TabIndex = 5;
+            this.colChon.HeaderText = "Chọn";
+            this.colChon.Name = "colChon";
+            // 
+            // colHoTen
+            // 
+            this.colHoTen.HeaderText = "Họ tên";
+            this.colHoTen.Name = "colHoTen";
+            // 
+            // colSDT
+            // 
+            this.colSDT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colSDT.HeaderText = "Số điện thoại";
+            this.colSDT.Name = "colSDT";
+            // 
+            // colThamSo1
+            // 
+            this.colThamSo1.HeaderText = "#1";
+            this.colThamSo1.Name = "colThamSo1";
+            // 
+            // colThamSo2
+            // 
+            this.colThamSo2.HeaderText = "#2";
+            this.colThamSo2.Name = "colThamSo2";
+            // 
+            // colThamSo3
+            // 
+            this.colThamSo3.HeaderText = "#3";
+            this.colThamSo3.Name = "colThamSo3";
+            // 
+            // colGui
+            // 
+            this.colGui.HeaderText = "Tình trạng";
+            this.colGui.Name = "colGui";
             // 
             // SMSapplicationForm
             // 
@@ -713,7 +693,6 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.statusBar1);
-            this.Controls.Add(this.gboConnectionStatus);
             this.Controls.Add(this.tabSMSapplication);
             this.MaximizeBox = false;
             this.Name = "SMSapplicationForm";
@@ -725,8 +704,6 @@
             this.tbPortSettings.ResumeLayout(false);
             this.gboPortSettings.ResumeLayout(false);
             this.gboPortSettings.PerformLayout();
-            this.gboConnectionStatus.ResumeLayout(false);
-            this.gboConnectionStatus.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -759,11 +736,6 @@
         private System.Windows.Forms.ComboBox cboBaudRate;
         private System.Windows.Forms.ComboBox cboPortName;
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.Button btnSendSMS;
-        private System.Windows.Forms.GroupBox gboConnectionStatus;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label lblConnectionStatus;
-        private System.Windows.Forms.Button btnDisconnect;
         private System.Windows.Forms.StatusBar statusBar1;
         private System.Windows.Forms.TabPage tbListNumber;
         private System.Windows.Forms.DataGridView dgvPhoneList;
@@ -777,11 +749,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dgvDevice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSTT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSDT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colGui;
         private System.Windows.Forms.Button btnTimThietBi;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cbThietBiCungMang;
         private System.Windows.Forms.TextBox txtMessage;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.Label label9;
@@ -798,6 +767,14 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem chuyểnSangKhôngDấuToolStripMenuItem;
         private System.Windows.Forms.ComboBox cbChonNhaMang;
+        private System.Windows.Forms.CheckBox chbNhieuNoiDung;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colChon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colHoTen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSDT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colThamSo1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colThamSo2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colThamSo3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colGui;
     }
 }
 

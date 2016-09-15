@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSapplication", "SMSapplic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{B3AC3E1C-2B87-4382-9D6B-F6CB8893FEB2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkypeMessageApplication", "SkypeApplication\SkypeMessageApplication\SkypeMessageApplication.csproj", "{8B90DC06-08A6-4482-9EAA-FCCD20A6A408}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViberApplication", "..\ViberApplication\ViberApplication.csproj", "{8181212E-B3C1-4184-AC2A-A01965EFEA48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{B3AC3E1C-2B87-4382-9D6B-F6CB8893FEB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3AC3E1C-2B87-4382-9D6B-F6CB8893FEB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3AC3E1C-2B87-4382-9D6B-F6CB8893FEB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B90DC06-08A6-4482-9EAA-FCCD20A6A408}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B90DC06-08A6-4482-9EAA-FCCD20A6A408}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B90DC06-08A6-4482-9EAA-FCCD20A6A408}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B90DC06-08A6-4482-9EAA-FCCD20A6A408}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8181212E-B3C1-4184-AC2A-A01965EFEA48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8181212E-B3C1-4184-AC2A-A01965EFEA48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8181212E-B3C1-4184-AC2A-A01965EFEA48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8181212E-B3C1-4184-AC2A-A01965EFEA48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
